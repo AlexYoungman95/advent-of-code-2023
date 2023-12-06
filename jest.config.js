@@ -1,5 +1,5 @@
 module.exports = {
-  transformIgnorePatterns: [
-    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
-  ]
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
 };
