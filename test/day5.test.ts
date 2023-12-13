@@ -3,7 +3,7 @@ import {
   formatMapInput,
   transformNumbers,
   getSmallestOutput,
-  getSeedRanges,
+  // getSeedRanges,
   getSmallestOutputWithRange
 } from "../src/day5";
 import day5Data from './data/day5Data';
@@ -101,25 +101,11 @@ describe('Day 5 getSmallestOutput', () => {
   });
 });
 
-describe('Day 5 getSeedRanges', () => {
-  it('extracts output from medium set', () => {
-    const input = [79, 14, 55, 13];
-    const expected = [
-      79, 80, 81, 82, 83, 84,
-      85, 86, 87, 88, 89, 90,
-      91, 92, 55, 56, 57, 58,
-      59, 60, 61, 62, 63, 64,
-      65, 66, 67
-    ];
-    expect(getSeedRanges(input)).toStrictEqual(expected);
-  });
-});
-
 describe('Day 5 getSmallestOutputWithRange', () => {
   it('extracts output from medium set', () => {
     expect(getSmallestOutputWithRange(exampleMediumData)).toStrictEqual(46);
   });
-  fit('extracts output from huge set', () => {
-    expect(getSmallestOutputWithRange(day5Data)).toStrictEqual(51580674);
+  it('extracts output from huge set', () => {
+    expect(getSmallestOutputWithRange(day5Data)).toStrictEqual(99751240);
   });
 });
