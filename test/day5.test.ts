@@ -2,7 +2,9 @@ import {
   getLinkedValue,
   formatMapInput,
   transformNumbers,
-  getSmallestOutput
+  getSmallestOutput,
+  getSeedRanges,
+  getSmallestOutputWithRange
 } from "../src/day5";
 import day5Data from './data/day5Data';
 
@@ -58,15 +60,15 @@ describe('Day 5 getLinkedValue', () => {
   });
 });
 
-describe('Day 5 processFullMap', () => {
+describe('Day 5 formatMapInput', () => {
   it('converts a medium set', () => {
     const expected = [
       { name: 'seeds', arrs: [79, 14, 55, 13] },
-      { name: "seed-to-soil", arrs: [[50, 98, 2], [52, 50, 48]] }, 
-      { name: "soil-to-fertilizer", arrs: [[0, 15, 37], [37, 52, 2], [39, 0, 15]] }, 
-      { name: "fertilizer-to-water", arrs: [[49, 53, 8], [0, 11, 42], [42, 0, 7], [57, 7, 4]] }, 
-      { name: "water-to-light", arrs: [[88, 18, 7], [18, 25, 70]] }, 
-      { name: "light-to-temperature", arrs: [[45, 77, 23], [81, 45, 19], [68, 64, 13]] }, 
+      { name: "seed-to-soil", arrs: [[50, 98, 2], [52, 50, 48]] },
+      { name: "soil-to-fertilizer", arrs: [[0, 15, 37], [37, 52, 2], [39, 0, 15]] },
+      { name: "fertilizer-to-water", arrs: [[49, 53, 8], [0, 11, 42], [42, 0, 7], [57, 7, 4]] },
+      { name: "water-to-light", arrs: [[88, 18, 7], [18, 25, 70]] },
+      { name: "light-to-temperature", arrs: [[45, 77, 23], [81, 45, 19], [68, 64, 13]] },
       { name: "temperature-to-humidity", arrs: [[0, 69, 1], [1, 0, 69]] },
       { name: "humidity-to-location", arrs: [[60, 56, 37], [56, 93, 4]] }
     ];
@@ -78,11 +80,11 @@ describe('Day 5 transformNumbers', () => {
   it('transform a medium set of seeds', () => {
     const input = [
       { name: 'seeds', arrs: [79, 14, 55, 13] },
-      { name: "seed-to-soil", arrs: [[50, 98, 2], [52, 50, 48]] }, 
-      { name: "soil-to-fertilizer", arrs: [[0, 15, 37], [37, 52, 2], [39, 0, 15]] }, 
-      { name: "fertilizer-to-water", arrs: [[49, 53, 8], [0, 11, 42], [42, 0, 7], [57, 7, 4]] }, 
-      { name: "water-to-light", arrs: [[88, 18, 7], [18, 25, 70]] }, 
-      { name: "light-to-temperature", arrs: [[45, 77, 23], [81, 45, 19], [68, 64, 13]] }, 
+      { name: "seed-to-soil", arrs: [[50, 98, 2], [52, 50, 48]] },
+      { name: "soil-to-fertilizer", arrs: [[0, 15, 37], [37, 52, 2], [39, 0, 15]] },
+      { name: "fertilizer-to-water", arrs: [[49, 53, 8], [0, 11, 42], [42, 0, 7], [57, 7, 4]] },
+      { name: "water-to-light", arrs: [[88, 18, 7], [18, 25, 70]] },
+      { name: "light-to-temperature", arrs: [[45, 77, 23], [81, 45, 19], [68, 64, 13]] },
       { name: "temperature-to-humidity", arrs: [[0, 69, 1], [1, 0, 69]] },
       { name: "humidity-to-location", arrs: [[60, 56, 37], [56, 93, 4]] }
     ];
@@ -96,5 +98,28 @@ describe('Day 5 getSmallestOutput', () => {
   });
   it('extracts output from huge set', () => {
     expect(getSmallestOutput(day5Data)).toStrictEqual(51580674);
+  });
+});
+
+describe('Day 5 getSeedRanges', () => {
+  it('extracts output from medium set', () => {
+    const input = [79, 14, 55, 13];
+    const expected = [
+      79, 80, 81, 82, 83, 84,
+      85, 86, 87, 88, 89, 90,
+      91, 92, 55, 56, 57, 58,
+      59, 60, 61, 62, 63, 64,
+      65, 66, 67
+    ];
+    expect(getSeedRanges(input)).toStrictEqual(expected);
+  });
+});
+
+describe('Day 5 getSmallestOutputWithRange', () => {
+  it('extracts output from medium set', () => {
+    expect(getSmallestOutputWithRange(exampleMediumData)).toStrictEqual(46);
+  });
+  fit('extracts output from huge set', () => {
+    expect(getSmallestOutputWithRange(day5Data)).toStrictEqual(51580674);
   });
 });
