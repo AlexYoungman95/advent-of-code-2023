@@ -47,16 +47,15 @@ export const getSmallestOutput = (arr) => Math.min(...transformNumbers(formatMap
 
 export const getSmallestOutputWithRange = (inputArr) => {
   let smallestSeed = 0;
-  const arr = formatMapInput(inputArr);
-  for (let i = 0; i < arr[0].arrs.length; i+=2) {
-    const seed1 = arr[0].arrs[i];
-    const seed2 = arr[0].arrs[i+1];
-    console.log(`seed1 ${seed1} seed2 ${seed2}`);
-    
+  const formattedMaps = formatMapInput(inputArr);
+  for (let i = 0; i < formattedMaps[0].arrs.length; i+=2) {
+    const seed1 = formattedMaps[0].arrs[i];
+    const seed2 = formattedMaps[0].arrs[i+1];
+    // console.log(`seed1 ${seed1} seed2 ${seed2}`);
     for (let j = seed1; j < seed1+seed2; j++) {
       let seedVal = j;
-      for (let i = 1; i < arr.length; i++) {
-        seedVal = getLinkedValue(arr[i].arrs as unknown as number[][], seedVal);
+      for (let i = 1; i < formattedMaps.length; i++) {
+        seedVal = getLinkedValue(formattedMaps[i].arrs as unknown as number[][], seedVal);
       }
 
       smallestSeed = smallestSeed == 0 ? seedVal : (seedVal < smallestSeed ? seedVal : smallestSeed);
